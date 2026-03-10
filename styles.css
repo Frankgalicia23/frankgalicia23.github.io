@@ -61,8 +61,21 @@ main {
     padding: 0 1rem;
 }
 
+.intro-banner {
+    background: var(--secondary-color);
+    padding: 2rem;
+    text-align: center;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    font-weight: 500;
+    border: 1px solid var(--accent-color);
+}
+
 section {
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
+    scroll-margin-top: 100px;
 }
 
 h2 {
@@ -70,6 +83,152 @@ h2 {
     border-bottom: 2px solid var(--accent-color);
     margin-bottom: 1rem;
     padding-bottom: 0.5rem;
+}
+
+/* Structures Container */
+.structures-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.digestive-svg {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.svg-organ {
+    cursor: pointer;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.svg-organ:hover {
+    opacity: 0.8;
+    transform: scale(1.02);
+}
+
+.instruction {
+    font-style: italic;
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+/* Photo Gallery */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.gallery-grid figure {
+    margin: 0;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.gallery-grid figcaption {
+    font-size: 0.8rem;
+    text-align: center;
+    margin-top: 0.3rem;
+    color: #555;
+}
+
+.structure-img {
+    width: 100%;
+    max-width: 300px;
+    display: block;
+    margin: 1rem 0;
+    border-radius: 4px;
+}
+
+/* Enzyme Interaction Section */
+.enzyme-interaction-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.interactive-area {
+    position: relative;
+    height: 250px;
+    background: #f1f8e9;
+    border: 2px dashed var(--accent-color);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.model-part {
+    position: absolute;
+    padding: 1rem;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 1s ease;
+}
+
+#enzyme-model {
+    width: 150px;
+    height: 100px;
+    background-color: var(--primary-color);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 70% 100%, 70% 60%, 30% 60%, 30% 100%, 0% 100%);
+}
+
+#substrate-model {
+    width: 60px;
+    height: 40px;
+    background-color: #ffb74d;
+    top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem;
+}
+
+#trigger-reaction {
+    position: absolute;
+    bottom: 10px;
+    padding: 0.5rem 1rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#trigger-reaction:hover {
+    background: #1b5e20;
+}
+
+.video-placeholder img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.caption {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #666;
+    text-align: center;
 }
 
 /* Accordion Styling */
@@ -102,6 +261,170 @@ h2 {
     padding: 1rem;
     display: none;
     border-bottom: 1px solid #ddd;
+}
+
+/* Simulation Section */
+.simulation-container {
+    margin-top: 3rem;
+    padding: 2rem;
+    background-color: #fafafa;
+    border-radius: 12px;
+    border: 1px solid #eee;
+}
+
+.simulation-layout {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.control-group {
+    margin-bottom: 1.5rem;
+}
+
+.control-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.control-group input[type="range"] {
+    width: 100%;
+}
+
+.enzyme-selector {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #ddd;
+}
+
+.enzyme-selector select {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.chart-area {
+    position: relative;
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.warning {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(211, 47, 47, 0.9);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    font-weight: bold;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Medical Mysteries */
+.mystery-container {
+    max-width: 600px;
+    margin: 2rem auto;
+}
+
+.mystery-card {
+    background: #fff;
+    border: 2px solid var(--accent-color);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.mystery-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.mystery-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.mystery-opt {
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #f9f9f9;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: bold;
+}
+
+.mystery-opt:hover {
+    background: var(--secondary-color);
+    border-color: var(--accent-color);
+}
+
+.mystery-opt.correct {
+    background-color: #c8e6c9;
+    border-color: #2e7d32;
+    color: #1b5e20;
+}
+
+.mystery-opt.incorrect {
+    background-color: #ffcdd2;
+    border-color: #d32f2f;
+    color: #b71c1c;
+}
+
+.feedback {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.feedback.correct {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #2e7d32;
+}
+
+.feedback.incorrect {
+    background: #ffebee;
+    color: #c62828;
+    border: 1px solid #c62828;
+}
+
+.mystery-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.mystery-navigation button {
+    padding: 0.5rem 1rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.mystery-navigation button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
 }
 
 /* Table Styling */
@@ -154,8 +477,12 @@ footer {
     background-color: var(--primary-color);
     color: var(--white);
     text-align: center;
-    padding: 1rem;
-    margin-top: 3rem;
+    padding: 3rem 1rem;
+    margin-top: 5rem;
+}
+
+.footer-content p {
+    margin-bottom: 0.5rem;
 }
 
 @media (max-width: 600px) {
