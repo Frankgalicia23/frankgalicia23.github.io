@@ -1,0 +1,197 @@
+/* lizard-styles.css */
+:root {
+    --primary-green: #2E7D32;
+    --secondary-green: #4CAF50;
+    --accent-green: #A5D6A7;
+    --bg-light: #F1F8E9;
+    --text-dark: #333;
+    --white: #FFFFFF;
+    --shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    margin: 0;
+    line-height: 1.6;
+}
+
+header {
+    background-color: var(--primary-green);
+    color: var(--white);
+    text-align: center;
+    padding: 2rem 1rem;
+    box-shadow: var(--shadow);
+}
+
+header h1 { margin: 0; font-size: 2.5rem; }
+header p { margin: 0.5rem 0 0; opacity: 0.9; }
+
+nav {
+    background-color: var(--secondary-green);
+    padding: 0.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav li { margin: 0 1.5rem; }
+nav a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+nav a:hover { color: var(--accent-green); }
+
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.simulation-layout {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+/* Controls Column */
+.controls {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+.control-group { margin-bottom: 2rem; }
+.control-group h3 {
+    border-bottom: 2px solid var(--accent-green);
+    padding-bottom: 0.5rem;
+    margin-top: 0;
+}
+
+.slider-item {
+    margin-bottom: 1.5rem;
+}
+
+.slider-item label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.slider-item input[type="range"] {
+    width: 100%;
+    accent-color: var(--primary-green);
+}
+
+.slider-item span {
+    display: block;
+    text-align: right;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+#reset-btn {
+    width: 100%;
+    padding: 0.8rem;
+    background: #e57373;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+#reset-btn:hover { background: #d32f2f; }
+
+/* Visualization Column */
+.visualization {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+.chart-container {
+    margin-bottom: 2rem;
+    height: 400px;
+}
+
+.lizard-display {
+    border-top: 2px dashed var(--accent-green);
+    padding-top: 1.5rem;
+}
+
+.lizard-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    text-align: center;
+}
+
+.lizard-item {
+    background: var(--bg-light);
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.lizard-svg {
+    width: 100%;
+    height: 80px;
+}
+
+.info-card {
+    background: var(--primary-green);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 2rem;
+}
+
+.info-card h3 { margin-top: 0; color: var(--accent-green); }
+
+/* Educational Content */
+.educational-content { margin-top: 4rem; }
+.educational-content h2 { border-bottom: 3px solid var(--primary-green); display: inline-block; }
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    border-top: 4px solid var(--primary-green);
+}
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    background: var(--primary-green);
+    color: white;
+    margin-top: 4rem;
+}
+
+@media (max-width: 900px) {
+    .simulation-layout {
+        grid-template-columns: 1fr;
+    }
+}
