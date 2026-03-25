@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lizard Tail Length Simulation - Natural Selection</title>
+    <link rel="stylesheet" href="lizard-styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Lizard Tail Length Simulation</h1>
+        <p>Explore how abiotic factors drive natural selection in a lizard population.</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home (Digestive System)</a></li>
+            <li><a href="#simulation">Simulation</a></li>
+            <li><a href="#about">About Selection</a></li>
+        </ul>
+    </nav>
+
+    <main id="simulation">
+        <div class="simulation-layout">
+            <!-- Left Column: Controls -->
+            <aside class="controls">
+                <section class="control-group">
+                    <h3>Climate & Weather</h3>
+                    <div class="slider-item">
+                        <label for="temp-slider">Temperature (°C)</label>
+                        <input type="range" id="temp-slider" min="-10" max="10" value="0" step="1">
+                        <span id="temp-val">Neutral</span>
+                    </div>
+                    <div class="slider-item">
+                        <label for="drought-slider">Drought Intensity</label>
+                        <input type="range" id="drought-slider" min="0" max="10" value="0" step="1">
+                        <span id="drought-val">None</span>
+                    </div>
+                    <div class="slider-item">
+                        <label for="rain-slider">Rainfall Volume</label>
+                        <input type="range" id="rain-slider" min="0" max="10" value="0" step="1">
+                        <span id="rain-val">Normal</span>
+                    </div>
+                </section>
+
+                <section class="control-group">
+                    <h3>Geographical Factors</h3>
+                    <div class="slider-item">
+                        <label for="altitude-slider">Altitude Variation</label>
+                        <input type="range" id="altitude-slider" min="0" max="10" value="0" step="1">
+                        <span id="altitude-val">Uniform</span>
+                    </div>
+                    <div class="slider-item">
+                        <label for="sunlight-slider">Sunlight Exposure</label>
+                        <input type="range" id="sunlight-slider" min="0" max="10" value="0" step="1">
+                        <span id="sunlight-val">Moderate</span>
+                    </div>
+                    <div class="slider-item">
+                        <label for="salinity-slider">Water Salinity</label>
+                        <input type="range" id="salinity-slider" min="0" max="10" value="0" step="1">
+                        <span id="salinity-val">Freshwater</span>
+                    </div>
+                </section>
+
+                <section class="control-group">
+                    <h3>Natural Disasters</h3>
+                    <div class="slider-item">
+                        <label for="disaster-slider">Disaster Severity</label>
+                        <input type="range" id="disaster-slider" min="0" max="10" value="0" step="1">
+                        <span id="disaster-val">None</span>
+                    </div>
+                </section>
+
+                <button id="reset-btn">Reset Population</button>
+            </aside>
+
+            <!-- Right Column: Visualization -->
+            <article class="visualization">
+                <div class="chart-container">
+                    <canvas id="selectionChart"></canvas>
+                </div>
+
+                <div class="lizard-display">
+                    <h3>Representative Phenotypes</h3>
+                    <div class="lizard-grid">
+                        <div class="lizard-item">
+                            <p>Short Tail</p>
+                            <svg viewBox="0 0 100 40" class="lizard-svg" id="short-tail-lizard">
+                                <!-- Simple Lizard Body -->
+                                <path d="M20,20 Q40,10 60,20 T80,20" fill="none" stroke="#4CAF50" stroke-width="4" stroke-linecap="round"/>
+                                <circle cx="20" cy="20" r="5" fill="#2E7D32"/>
+                                <!-- Short Tail -->
+                                <path d="M60,20 Q65,15 70,20" fill="none" stroke="#4CAF50" stroke-width="3" stroke-linecap="round" class="tail"/>
+                            </svg>
+                        </div>
+                        <div class="lizard-item">
+                            <p>Average Tail</p>
+                            <svg viewBox="0 0 100 40" class="lizard-svg" id="avg-tail-lizard">
+                                <path d="M20,20 Q40,10 60,20 T80,20" fill="none" stroke="#4CAF50" stroke-width="4" stroke-linecap="round"/>
+                                <circle cx="20" cy="20" r="5" fill="#2E7D32"/>
+                                <!-- Average Tail -->
+                                <path d="M60,20 Q75,10 90,20" fill="none" stroke="#4CAF50" stroke-width="3" stroke-linecap="round" class="tail"/>
+                            </svg>
+                        </div>
+                        <div class="lizard-item">
+                            <p>Long Tail</p>
+                            <svg viewBox="0 0 120 40" class="lizard-svg" id="long-tail-lizard">
+                                <path d="M20,20 Q40,10 60,20 T80,20" fill="none" stroke="#4CAF50" stroke-width="4" stroke-linecap="round"/>
+                                <circle cx="20" cy="20" r="5" fill="#2E7D32"/>
+                                <!-- Long Tail -->
+                                <path d="M60,20 Q85,5 110,20 T130,10" fill="none" stroke="#4CAF50" stroke-width="3" stroke-linecap="round" class="tail"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <section id="selection-info" class="info-card">
+                    <h3>Current Selection Type: <span id="selection-type">Stabilizing</span></h3>
+                    <p id="selection-desc">In a stable environment, lizards with average tail lengths are most likely to survive and reproduce.</p>
+                </section>
+            </article>
+        </div>
+
+        <section id="about" class="educational-content">
+            <h2>Understanding Natural Selection</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Directional Selection</h3>
+                    <p>Favors one extreme phenotype over others, causing the population mean to shift. Often triggered by environmental changes like temperature shifts or droughts.</p>
+                </div>
+                <div class="card">
+                    <h3>Stabilizing Selection</h3>
+                    <p>Favors intermediate phenotypes and selects against extreme variations. This narrows the bell curve around the average.</p>
+                </div>
+                <div class="card">
+                    <h3>Diversifying (Disruptive) Selection</h3>
+                    <p>Favors both extremes while selecting against the intermediate phenotype. This can lead to a bimodal distribution (two peaks).</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Evolution Lab - Biology Education Resource</p>
+    </footer>
+
+    <script src="lizard-script.js"></script>
+</body>
+</html>
