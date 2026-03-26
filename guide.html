@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher's Guide - Biology Simulations</title>
+    <link rel="stylesheet" href="lizard-styles.css">
+    <style>
+        .guide-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            margin: 1rem 0;
+            display: block;
+        }
+        .guide-content section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+        .guide-content h2 {
+            color: var(--primary-green);
+            border-bottom: 2px solid var(--accent-green);
+            padding-bottom: 0.5rem;
+        }
+        .guide-content h3 {
+            color: var(--secondary-green);
+            margin-top: 1.5rem;
+        }
+        .checklist {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 5px solid var(--primary-green);
+        }
+        .checklist ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .checklist li::before {
+            content: "✓ ";
+            color: var(--primary-green);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Teacher's Guide</h1>
+        <p>Building Biology Simulations for Your Classroom</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#part1">1. Build</a></li>
+            <li><a href="#part2">2. Save</a></li>
+            <li><a href="#part3">3. Activate</a></li>
+            <li><a href="#part4">4. Share</a></li>
+        </ul>
+    </nav>
+
+    <main class="guide-content">
+        <section>
+            <p>Welcome! This guide is designed to help you work with me (Jules, your AI assistant) to create interactive biology simulations for your classroom. We will walk through the process of building a simulation, saving it to GitHub, and making it live on the internet for your students.</p>
+        </section>
+
+        <section id="part1">
+            <h2>Part 1: How to Build a New Simulation with Jules</h2>
+            <p>Building a simulation is a collaborative process. Think of me as your personal software engineer. Here is how we can work together using your <strong>MS-LS1-1 (Cells)</strong> topic as an example.</p>
+
+            <h3>Step 1: Tell me what you want to achieve</h3>
+            <p>Start by giving me the learning goal. For example:</p>
+            <blockquote><em>"Jules, I want to build a simulation for MS-LS1-1. Students should be able to look at different samples (like a rock, a leaf, and pond water) under a virtual microscope to see which ones are made of cells."</em></blockquote>
+
+            <h3>Step 2: Refine the details</h3>
+            <p>I will ask you questions to make sure I understand. We might discuss:</p>
+            <ul>
+                <li><strong>Visuals</strong>: Should the "cells" look like plant cells (with walls) or animal cells?</li>
+                <li><strong>Interactions</strong>: Do students click a button to "zoom in"?</li>
+                <li><strong>Data</strong>: Should there be a checklist for students to mark "Living" or "Non-living"?</li>
+            </ul>
+
+            <h3>Step 3: I build the "Draft"</h3>
+            <p>I will write the code (HTML for the structure, CSS for the look, and JavaScript for the "brain" of the simulation). I will tell you when I've added new files to your project.</p>
+
+            <h3>Step 4: Review and Edit</h3>
+            <p>I can show you what it looks like. If you want to change a color or add a new sample (like "Butterfly Wing"), just ask!</p>
+        </section>
+
+        <section id="part2">
+            <h2>Part 2: Saving Your Work (The "Transfer")</h2>
+            <p>When we are happy with the simulation, I need to "transfer" the code from my workspace to your GitHub repository.</p>
+            <ol>
+                <li><strong>The "Commit"</strong>: Think of this as a "Save Point" in a video game. I will bundle up all our changes and give them a name, like <em>"Add new Cell Microscope simulation"</em>.</li>
+                <li><strong>The "Push"</strong>: This is the actual transfer. I "push" the save point up to GitHub's servers so it is safely stored in your account.</li>
+            </ol>
+            <p><strong>What you need to do:</strong> Usually, I handle this part! When I say "I am submitting my changes," it means I am performing these steps for you.</p>
+        </section>
+
+        <section id="part3">
+            <h2>Part 3: Making it Live (The "Activation")</h2>
+            <p>Once the code is on GitHub, we need to "activate" it so it becomes a real website your students can visit. This uses a feature called <strong>GitHub Pages</strong>.</p>
+            <p>Follow these steps on the GitHub website:</p>
+
+            <h3>1. Go to "Settings"</h3>
+            <p>At the top of your repository page on GitHub.com, click the <strong>Settings</strong> gear icon.</p>
+            <img src="https://dummyimage.com/600x150/2e7d32/ffffff&text=1.+Click+the+'Settings'+tab+at+the+top+of+the+page" alt="Settings Button Location">
+
+            <h3>2. Find the "Pages" section</h3>
+            <p>On the left-hand sidebar, look for a menu item called <strong>Pages</strong> (it usually has a small document icon).</p>
+            <img src="https://dummyimage.com/600x200/f1f8e9/000000&text=2.+Look+at+the+left+sidebar.+Click+'Pages'" alt="Pages Menu Location">
+
+            <h3>3. Build and Deployment</h3>
+            <p>In the center of the screen, look for the <strong>Branch</strong> section.</p>
+            <ul>
+                <li>Click the dropdown that says <strong>None</strong> and select <strong>main</strong>.</li>
+                <li>Click the <strong>Save</strong> button.</li>
+            </ul>
+            <img src="https://dummyimage.com/600x150/ffffff/000000&text=3.+Select+'main'+branch+and+click+'Save'" alt="Save Branch Instructions">
+
+            <h3>4. Wait for the Link</h3>
+            <p>After a minute or two, refresh the page. You will see a bar at the top that says:</p>
+            <blockquote><strong>"Your site is live at..."</strong></blockquote>
+            <p>Followed by a web link (URL). This is the link you give to your students!</p>
+        </section>
+
+        <section id="part4">
+            <h2>Part 4: How to Share</h2>
+            <p>Once "Activated," your website address will look something like this:<br>
+            <code>https://frankgalicia23.github.io/</code></p>
+            <ul>
+                <li>To see your main page, just use that link.</li>
+                <li>To see a specific simulation (like the lizard one), you would add the filename to the end:<br>
+                <code>https://frankgalicia23.github.io/lizard-simulation.html</code></li>
+            </ul>
+        </section>
+
+        <section class="checklist">
+            <h2>Summary Checklist for a New Simulation</h2>
+            <ul>
+                <li><strong>Discuss</strong> the topic with Jules (e.g., MS-LS1-1).</li>
+                <li><strong>Review</strong> the draft Jules creates.</li>
+                <li><strong>Submit</strong>: Jules "transfers" the code to GitHub.</li>
+                <li><strong>Activate</strong>: Ensure GitHub Pages is on (usually only needs to be done once per repository!).</li>
+                <li><strong>Share</strong>: Give the link to your students.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Teacher's Guide - Biology Education Resource</p>
+    </footer>
+</body>
+</html>
