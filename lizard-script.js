@@ -6,9 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let chart;
 
     // Population Parameters
-    const range = Array.from({ length: 101 }, (_, i) => i); // 0 to 100 tail length units
-    const initialMean = 50;
-    const initialStdDev = 10;
+    // Tail Length Range: 5cm to 30cm
+    const range = Array.from({ length: 26 }, (_, i) => i + 5);
+    const initialMean = 15;
+    const initialStdDev = 3;
 
     // Normal Distribution Helper
     function normalDist(x, mean, stdDev) {
@@ -63,46 +64,61 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         // Update Text Labels
-        valDisplays.temp.textContent = vals.temp === 0 ? "Neutral" : (vals.temp > 0 ? `+${vals.temp}°C Warmer` : `${vals.temp}°C Cooler`);
-        valDisplays.drought.textContent = vals.drought === 0 ? "None" : (vals.drought > 7 ? "Severe" : "Moderate");
-        valDisplays.rain.textContent = vals.rain === 0 ? "Normal" : (vals.rain > 7 ? "Heavy" : "Increased");
-        valDisplays.altitude.textContent = vals.altitude === 0 ? "Uniform" : (vals.altitude > 7 ? "Extreme Variation" : "Mixed Terrain");
-        valDisplays.sunlight.textContent = vals.sunlight === 0 ? "Moderate" : (vals.sunlight > 7 ? "Intense" : "Partial Shade");
-        valDisplays.salinity.textContent = vals.salinity === 0 ? "Freshwater" : (vals.salinity > 7 ? "Hypersaline" : "Brackish");
-        valDisplays.disaster.textContent = vals.disaster === 0 ? "None" : (vals.disaster > 7 ? "Catastrophic" : "Minor Event");
+        valDisplays.temp.textContent = `${vals.temp}°C`;
+        valDisplays.drought.textContent = `${vals.drought} Years`;
+        valDisplays.rain.textContent = `${vals.rain} mm`;
+        valDisplays.altitude.textContent = `${vals.altitude} m`;
+        valDisplays.sunlight.textContent = `${vals.sunlight} hrs/day`;
+        valDisplays.salinity.textContent = `${vals.salinity} ppt`;
+        valDisplays.disaster.textContent = `${vals.disaster}%`;
 
         // Calculate Simulation Results
         let newMean = initialMean;
         let newStdDev = initialStdDev;
         let isBimodal = false;
-        let peak2Mean = 70;
+        let peak2Mean = 25;
 
-        // Directional logic: Climate and Disaster shift the mean
-        // +Temp -> Shorter tails (heat dissipation?), +Rain -> Longer tails (balance in wet terrain?)
-        newMean += (vals.temp * 2);
-        newMean -= (vals.drought * 1.5);
-        newMean += (vals.rain * 1.2);
-        newMean -= (vals.disaster * 2); // Disasters in this model favor smaller/shorter-tailed lizards
+        // Neutral Points
+        const neutral = {
+            temp: 25,
+            rain: 1000,
+            altitude: 500,
+            sunlight: 8
+        };
 
-        // Diversifying logic: Geography and Temp mix splits the population
-        if (vals.altitude > 3 || vals.salinity > 3 || vals.sunlight > 5 || (vals.altitude > 0 && Math.abs(vals.temp) > 3)) {
+        // Directional logic:
+        // +Temp -> Longer tails (heat dissipation)
+        newMean += (vals.temp - neutral.temp) * 0.4;
+        // +Rain -> Longer tails (climbing/balance)
+        newMean += (vals.rain - neutral.rain) * 0.003;
+        // +Drought -> Shorter tails
+        newMean -= (vals.drought) * 0.8;
+        // +Habitat Loss -> Shorter tails
+        newMean -= (vals.disaster) * 0.1;
+
+        // Diversifying logic: Geography and extremes split the population
+        const altitudeDev = Math.abs(vals.altitude - neutral.altitude);
+        if (vals.altitude > 2000 || vals.salinity > 15 || vals.sunlight > 11 || (altitudeDev > 1000 && Math.abs(vals.temp - neutral.temp) > 10)) {
             isBimodal = true;
-            // First peak moves left, second peak moves right based on "diversity" intensity
-            // Increased multipliers to reach ~20 and ~80 extremes
-            const baseSpread = (vals.altitude * 1.5) + (vals.salinity * 1.2) + (vals.sunlight * 1.0);
-            const tempSpreadBoost = Math.abs(vals.temp) * 1.5;
+
+            const baseSpread = (vals.altitude / 1000 * 1.5) + (vals.salinity / 10 * 1.2) + (Math.abs(vals.sunlight - neutral.sunlight) * 0.5);
+            const tempSpreadBoost = Math.abs(vals.temp - neutral.temp) * 0.1;
             const spread = baseSpread + tempSpreadBoost;
 
-            const baseMean = 50; // Central anchor for disruptive selection
+            const baseMean = 15;
             newMean = baseMean - spread;
             peak2Mean = baseMean + spread;
-            newStdDev = initialStdDev - 3; // Even narrower peaks for "deep valley"
+            newStdDev = initialStdDev * 0.6;
         }
 
         // Stabilizing logic: If everything is near neutral, narrow the distribution
-        const totalActivity = Object.values(vals).reduce((acc, v) => acc + Math.abs(v), 0);
-        if (totalActivity < 3) {
-            newStdDev = initialStdDev - 4; // Very narrow around the mean
+        const tempDev = Math.abs(vals.temp - neutral.temp);
+        const rainDev = Math.abs(vals.rain - neutral.rain);
+        const altDev = Math.abs(vals.altitude - neutral.altitude);
+        const sunDev = Math.abs(vals.sunlight - neutral.sunlight);
+
+        if (tempDev < 5 && rainDev < 500 && altDev < 500 && sunDev < 2 && vals.drought === 0 && vals.salinity === 0 && vals.disaster === 0) {
+            newStdDev = initialStdDev * 0.7;
             selectionTypeDisplay.textContent = "Stabilizing";
             selectionDescDisplay.textContent = "In a stable environment, lizards with average tail lengths are most likely to survive and reproduce. Extreme variations are selected against.";
         } else if (isBimodal) {
@@ -113,9 +129,9 @@ document.addEventListener('DOMContentLoaded', () => {
             selectionDescDisplay.textContent = "A change in the environment (climate or disaster) favors one extreme of the tail length spectrum, shifting the entire population mean.";
         }
 
-        // Clamp Mean
-        newMean = Math.max(10, Math.min(90, newMean));
-        peak2Mean = Math.max(10, Math.min(90, peak2Mean));
+        // Clamp Mean (Range 5-30)
+        newMean = Math.max(7, Math.min(28, newMean));
+        peak2Mean = Math.max(7, Math.min(28, peak2Mean));
 
         // Update Chart
         chart.data.datasets[1].data = generateCurveData(newMean, newStdDev, isBimodal, peak2Mean);
@@ -126,19 +142,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateLizardVisuals(mean, bimodal, p2m) {
-        // Simple logic to adjust SVG tail lengths
-        // In a real app, we'd adjust the 'd' attribute of the tail path
-        const tails = document.querySelectorAll('.lizard-svg .tail');
-        // This is a simplification - real visual feedback is provided by the chart
-        // but let's highlight which lizard is currently "optimal"
         document.querySelectorAll('.lizard-item').forEach(item => item.style.border = 'none');
 
         if (bimodal) {
             document.getElementById('short-tail-lizard').parentElement.style.border = '2px solid gold';
             document.getElementById('long-tail-lizard').parentElement.style.border = '2px solid gold';
-        } else if (mean < 40) {
+        } else if (mean < 12) {
             document.getElementById('short-tail-lizard').parentElement.style.border = '2px solid gold';
-        } else if (mean > 60) {
+        } else if (mean > 18) {
             document.getElementById('long-tail-lizard').parentElement.style.border = '2px solid gold';
         } else {
             document.getElementById('avg-tail-lizard').parentElement.style.border = '2px solid gold';
@@ -176,7 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
             maintainAspectRatio: false,
             scales: {
                 x: {
-                    title: { display: true, text: 'Tail Length (Relative Units)' },
+                    title: { display: true, text: 'Tail Length (cm)' },
                     grid: { display: false }
                 },
                 y: {
