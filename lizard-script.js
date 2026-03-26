@@ -18,8 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Generate Data for a Single Curve
     function generateCurveData(mean, stdDev, isBimodal = false, peak2Mean = 70) {
         if (isBimodal) {
-            // Mix of two normal distributions
-            return range.map(x => (normalDist(x, mean, stdDev/1.5) + normalDist(x, peak2Mean, stdDev/1.5)) / 2);
+            // Mix of two normal distributions with narrower peaks for deep valley
+            const peakStdDev = stdDev / 2;
+            return range.map(x => (normalDist(x, mean, peakStdDev) + normalDist(x, peak2Mean, peakStdDev)) / 2);
         }
         return range.map(x => normalDist(x, mean, stdDev));
     }
@@ -83,15 +84,19 @@ document.addEventListener('DOMContentLoaded', () => {
         newMean += (vals.rain * 1.2);
         newMean -= (vals.disaster * 2); // Disasters in this model favor smaller/shorter-tailed lizards
 
-        // Diversifying logic: Geography splits the population
-        if (vals.altitude > 3 || vals.salinity > 3 || vals.sunlight > 5) {
+        // Diversifying logic: Geography and Temp mix splits the population
+        if (vals.altitude > 3 || vals.salinity > 3 || vals.sunlight > 5 || (vals.altitude > 0 && Math.abs(vals.temp) > 3)) {
             isBimodal = true;
             // First peak moves left, second peak moves right based on "diversity" intensity
-            const spread = (vals.altitude + vals.salinity + vals.sunlight) / 2;
-            const baseMean = newMean; // Use the shifted mean as base for the split
+            // Increased multipliers to reach ~20 and ~80 extremes
+            const baseSpread = (vals.altitude * 1.5) + (vals.salinity * 1.2) + (vals.sunlight * 1.0);
+            const tempSpreadBoost = Math.abs(vals.temp) * 1.5;
+            const spread = baseSpread + tempSpreadBoost;
+
+            const baseMean = 50; // Central anchor for disruptive selection
             newMean = baseMean - spread;
             peak2Mean = baseMean + spread;
-            newStdDev = initialStdDev - 2; // Narrower peaks
+            newStdDev = initialStdDev - 3; // Even narrower peaks for "deep valley"
         }
 
         // Stabilizing logic: If everything is near neutral, narrow the distribution
@@ -102,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
             selectionDescDisplay.textContent = "In a stable environment, lizards with average tail lengths are most likely to survive and reproduce. Extreme variations are selected against.";
         } else if (isBimodal) {
             selectionTypeDisplay.textContent = "Diversifying (Disruptive)";
-            selectionDescDisplay.textContent = "Varied environmental conditions (like altitude or salinity) favor both extremes. Average-length tails are at a disadvantage.";
+            selectionDescDisplay.textContent = `Varied environmental conditions favor both extremes. Average-length tails are at a disadvantage. Population Means: ${Math.round(newMean)} & ${Math.round(peak2Mean)}`;
         } else {
             selectionTypeDisplay.textContent = "Directional";
             selectionDescDisplay.textContent = "A change in the environment (climate or disaster) favors one extreme of the tail length spectrum, shifting the entire population mean.";
