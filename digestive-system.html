@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Human Digestive System</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>The Human Digestive System</h1>
+        <p>Enzymes, Structures, and Functions</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#structures">Structures</a></li>
+            <li><a href="#enzymes">Enzymes</a></li>
+            <li><a href="#functions">Functions</a></li>
+            <li><a href="lizard-simulation.html" style="color: #FFD54F; font-weight: bold;">Lizard Simulation</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="intro-banner">
+            <p>Explore the intricate pathways of human digestion, from the first bite to nutrient absorption.</p>
+        </div>
+
+        <section id="overview">
+            <h2>Overview</h2>
+            <p>Digestion is the complex process by which the body breaks down food into nutrients, which it uses for energy, growth, and cell repair. It involves both mechanical breakdown (chewing, churning) and chemical breakdown (enzymes).</p>
+            <p>The four main stages are:</p>
+            <ul>
+                <li><strong>Ingestion:</strong> Taking in food through the mouth.</li>
+                <li><strong>Digestion:</strong> Breaking down food into small organic fragments.</li>
+                <li><strong>Absorption:</strong> Taking up nutrients into the bloodstream.</li>
+                <li><strong>Elimination:</strong> Removing undigested waste.</li>
+            </ul>
+        </section>
+
+        <section id="structures">
+            <h2>Structures of the Digestive System</h2>
+            <div class="structures-container">
+                <div class="interactive-diagram">
+                    <h3>Interactive Anatomy</h3>
+                    <p class="instruction">Click on an organ to learn more.</p>
+                    <!-- Simplified Interactive SVG -->
+                    <svg viewBox="0 0 400 600" class="digestive-svg">
+                        <g id="mouth-part" class="svg-organ" data-target="mouth">
+                            <circle cx="200" cy="80" r="30" fill="#ffccbc" />
+                            <text x="200" y="85" text-anchor="middle" font-size="12">Mouth</text>
+                        </g>
+                        <g id="esophagus-part" class="svg-organ" data-target="esophagus">
+                            <rect x="190" y="110" width="20" height="100" fill="#ffab91" />
+                            <text x="220" y="160" font-size="12">Esophagus</text>
+                        </g>
+                        <g id="stomach-part" class="svg-organ" data-target="stomach">
+                            <path d="M200,210 Q250,210 260,260 Q260,310 200,310 Q150,310 160,260 Q160,210 200,210" fill="#ef9a9a" />
+                            <text x="200" y="265" text-anchor="middle" font-size="12">Stomach</text>
+                        </g>
+                        <g id="liver-part" class="svg-organ" data-target="accessory">
+                            <path d="M120,220 L180,220 L160,270 Z" fill="#8d6e63" />
+                            <text x="140" y="240" text-anchor="middle" font-size="10" fill="white">Liver</text>
+                        </g>
+                        <g id="small-intestine-part" class="svg-organ" data-target="small-intestine">
+                            <rect x="175" y="320" width="50" height="60" rx="10" fill="#fff59d" />
+                            <text x="200" y="355" text-anchor="middle" font-size="10">Small Intestine</text>
+                        </g>
+                        <g id="large-intestine-part" class="svg-organ" data-target="large-intestine">
+                            <rect x="160" y="310" width="80" height="90" fill="none" stroke="#a5d6a7" stroke-width="15" rx="10" />
+                            <text x="200" y="420" text-anchor="middle" font-size="12">Large Intestine</text>
+                        </g>
+                    </svg>
+                </div>
+
+                <div class="photo-gallery">
+                    <h3>Medical & Anatomical Gallery</h3>
+                    <div class="gallery-grid">
+                        <figure>
+                            <img src="https://dummyimage.com/320x240/2e7d32/fff&text=Stomach+Endoscopy" alt="Endoscopy of a healthy stomach">
+                            <figcaption>Real Endoscopy: Stomach Interior</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="https://dummyimage.com/320x240/2e7d32/fff&text=Colonoscopy" alt="Colonoscopy showing normal mucosa">
+                            <figcaption>Real Colonoscopy: Large Intestine</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="https://dummyimage.com/320x240/2e7d32/fff&text=Human+Liver" alt="Anatomical photo of a human liver">
+                            <figcaption>Anatomical: Human Liver</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="https://dummyimage.com/320x240/2e7d32/fff&text=Villi+Microscopic" alt="Microscopic view of villi">
+                            <figcaption>Microscopic: Villi of Small Intestine</figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion" id="structure-details">
+                <div class="accordion-item" id="mouth">
+                    <button class="accordion-header">Mouth & Pharynx</button>
+                    <div class="accordion-content">
+                        <p>Digestion begins in the oral cavity. Teeth mechanically break down food (mastication), while saliva moistens it. The pharynx serves as a passageway for both air and food.</p>
+                        <img src="https://dummyimage.com/320x240/2e7d32/fff&text=Human+Mouth" alt="Human mouth interior" class="structure-img">
+                    </div>
+                </div>
+                <div class="accordion-item" id="esophagus">
+                    <button class="accordion-header">Esophagus</button>
+                    <div class="accordion-content">
+                        <p>A muscular tube that carries food from the pharynx to the stomach via rhythmic contractions called peristalsis.</p>
+                    </div>
+                </div>
+                <div class="accordion-item" id="stomach">
+                    <button class="accordion-header">Stomach</button>
+                    <div class="accordion-content">
+                        <p>A J-shaped organ that churns food with gastric juice (hydrochloric acid and enzymes) to create a semi-liquid called chyme.</p>
+                    </div>
+                </div>
+                <div class="accordion-item" id="small-intestine">
+                    <button class="accordion-header">Small Intestine</button>
+                    <div class="accordion-content">
+                        <p>Divided into the <strong>duodenum</strong>, <strong>jejunum</strong>, and <strong>ileum</strong>. Most chemical digestion and nutrient absorption occur here, aided by villi and microvilli which increase surface area.</p>
+                    </div>
+                </div>
+                <div class="accordion-item" id="large-intestine">
+                    <button class="accordion-header">Large Intestine</button>
+                    <div class="accordion-content">
+                        <p>Includes the <strong>cecum</strong>, <strong>colon</strong>, and <strong>rectum</strong>. It reabsorbs water and minerals, and processes waste for elimination.</p>
+                    </div>
+                </div>
+                <div class="accordion-item" id="accessory">
+                    <button class="accordion-header">Accessory Organs</button>
+                    <div class="accordion-content">
+                        <ul>
+                            <li><strong>Salivary Glands:</strong> Produce saliva containing enzymes.</li>
+                            <li><strong>Liver:</strong> Produces bile to emulsify fats.</li>
+                            <li><strong>Gallbladder:</strong> Stores and concentrates bile.</li>
+                            <li><strong>Pancreas:</strong> Produces pancreatic juice rich in enzymes and bicarbonate.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="enzymes">
+            <h2>Digestive Enzymes & Function</h2>
+
+            <div class="enzyme-interaction-container">
+                <div class="animation-box">
+                    <h3>Enzyme Action (Lock & Key)</h3>
+                    <div id="lock-key-interactive" class="interactive-area">
+                        <div id="enzyme-model" class="model-part">Enzyme</div>
+                        <div id="substrate-model" class="model-part">Substrate</div>
+                        <button id="trigger-reaction">Trigger Reaction</button>
+                    </div>
+                    <p class="caption">The "Lock and Key" model shows how enzymes specifically fit their substrate.</p>
+                </div>
+
+                <div class="video-box">
+                    <h3>Educational Animation</h3>
+                    <div class="video-placeholder">
+                        <img src="https://dummyimage.com/480x270/2e7d32/fff&text=Enzyme+Function+Animation+GIF" alt="Enzyme Function Animation">
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Enzyme</th>
+                            <th>Source</th>
+                            <th>Substrate</th>
+                            <th>End Products</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Salivary Amylase</td>
+                            <td>Salivary Glands</td>
+                            <td>Polysaccharides (Starch)</td>
+                            <td>Maltose</td>
+                        </tr>
+                        <tr>
+                            <td>Lingual Lipase</td>
+                            <td>Mouth (Von Ebner's glands)</td>
+                            <td>Lipids (Triglycerides)</td>
+                            <td>Fatty acids, Diglycerides</td>
+                        </tr>
+                        <tr>
+                            <td>Pepsin</td>
+                            <td>Stomach (Chief cells)</td>
+                            <td>Proteins</td>
+                            <td>Peptides</td>
+                        </tr>
+                        <tr>
+                            <td>Gastric Lipase</td>
+                            <td>Stomach (Chief cells)</td>
+                            <td>Lipids</td>
+                            <td>Fatty acids, Glycerides</td>
+                        </tr>
+                        <tr>
+                            <td>Pancreatic Amylase</td>
+                            <td>Pancreas</td>
+                            <td>Starch</td>
+                            <td>Maltose, Glucose</td>
+                        </tr>
+                        <tr>
+                            <td>Trypsin / Chymotrypsin</td>
+                            <td>Pancreas</td>
+                            <td>Proteins/Peptides</td>
+                            <td>Peptides</td>
+                        </tr>
+                        <tr>
+                            <td>Pancreatic Lipase</td>
+                            <td>Pancreas</td>
+                            <td>Triglycerides</td>
+                            <td>Fatty acids, Monoglycerides</td>
+                        </tr>
+                        <tr>
+                            <td>Maltase</td>
+                            <td>Small Intestine (Brush border)</td>
+                            <td>Maltose</td>
+                            <td>Glucose</td>
+                        </tr>
+                        <tr>
+                            <td>Sucrase</td>
+                            <td>Small Intestine (Brush border)</td>
+                            <td>Sucrose</td>
+                            <td>Glucose, Fructose</td>
+                        </tr>
+                        <tr>
+                            <td>Lactase</td>
+                            <td>Small Intestine (Brush border)</td>
+                            <td>Lactose</td>
+                            <td>Glucose, Galactose</td>
+                        </tr>
+                        <tr>
+                            <td>Peptidases</td>
+                            <td>Small Intestine / Pancreas</td>
+                            <td>Peptides</td>
+                            <td>Amino acids</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="simulation-container">
+                <h3>Enzyme Activity Simulation</h3>
+                <p>Adjust variables to see how they affect the rate of enzyme-catalyzed reactions. Note how extreme conditions can denature (break) the enzyme.</p>
+                <div class="simulation-layout">
+                    <div class="controls">
+                        <div class="control-group">
+                            <label for="temp-slider">Temperature (°C): <span id="temp-val">37</span></label>
+                            <input type="range" id="temp-slider" min="0" max="100" value="37" step="1">
+                        </div>
+                        <div class="control-group">
+                            <label for="ph-slider">pH: <span id="ph-val">7.0</span></label>
+                            <input type="range" id="ph-slider" min="0" max="14" value="7" step="0.1">
+                        </div>
+                        <div class="control-group">
+                            <label for="salinity-slider">Salinity (M): <span id="salinity-val">0.15</span></label>
+                            <input type="range" id="salinity-slider" min="0" max="2" value="0.15" step="0.01">
+                        </div>
+                        <div class="control-group">
+                            <label for="concentration-slider">Substrate Conc. (%): <span id="concentration-val">50</span></label>
+                            <input type="range" id="concentration-slider" min="0" max="100" value="50" step="1">
+                        </div>
+                        <div class="enzyme-selector">
+                            <label for="enzyme-type">Select Enzyme:</label>
+                            <select id="enzyme-type">
+                                <option value="amylase">Salivary Amylase (pH 7.0)</option>
+                                <option value="pepsin">Pepsin (pH 2.0)</option>
+                                <option value="trypsin">Trypsin (pH 8.0)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="chart-area">
+                        <canvas id="enzymeChart"></canvas>
+                        <div id="denature-warning" class="warning hidden">Warning: Enzyme Denatured!</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="mysteries">
+            <h2>Medical Mysteries: The GI Files</h2>
+            <p>Apply your knowledge to solve these logic-based medical mysteries. Read the symptoms and identify the most likely organ or enzyme involved.</p>
+
+            <div class="mystery-container">
+                <div id="mystery-display" class="mystery-card">
+                    <h3 id="mystery-title">Case #1: The Bloated Baker</h3>
+                    <p id="mystery-symptoms">Patient reports severe abdominal bloating, gas, and diarrhea shortly after consuming dairy products. Symptoms began in early adulthood. Breath test shows high hydrogen levels.</p>
+                    <div class="mystery-options">
+                        <button class="mystery-opt" data-correct="false">Stomach / Pepsin</button>
+                        <button class="mystery-opt" data-correct="true">Small Intestine / Lactase</button>
+                        <button class="mystery-opt" data-correct="false">Liver / Bile</button>
+                        <button class="mystery-opt" data-correct="false">Large Intestine / Amylase</button>
+                    </div>
+                    <div id="mystery-feedback" class="feedback hidden"></div>
+                </div>
+                <div class="mystery-navigation">
+                    <button id="prev-mystery" disabled>&larr; Previous Case</button>
+                    <span id="mystery-count">Case 1 of 3</span>
+                    <button id="next-mystery">Next Case &rarr;</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="functions">
+            <h2>Core Functions</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Mechanical Digestion</h3>
+                    <p>Physical breakdown of food into smaller pieces (chewing in mouth, churning in stomach, segmentation in intestines).</p>
+                </div>
+                <div class="card">
+                    <h3>Chemical Digestion</h3>
+                    <p>Enzymatic breakdown of macromolecules into their constituent parts (monosaccharides, amino acids, fatty acids).</p>
+                </div>
+                <div class="card">
+                    <h3>Absorption</h3>
+                    <p>Movement of nutrients from the GI tract into the blood or lymph capillaries.</p>
+                </div>
+                <div class="card">
+                    <h3>Elimination</h3>
+                    <p>Removal of undigested materials through the anus.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Digestive System Education - Unit Study Resource for High School Biology</p>
+            <p>Designed for interactive learning and clinical curiosity.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
