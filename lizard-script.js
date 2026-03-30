@@ -33,7 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
         rain: document.getElementById('rain-slider'),
         altitude: document.getElementById('altitude-slider'),
         sunlight: document.getElementById('sunlight-slider'),
-        salinity: document.getElementById('salinity-slider'),
         disaster: document.getElementById('disaster-slider')
     };
 
@@ -43,7 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
         rain: document.getElementById('rain-val'),
         altitude: document.getElementById('altitude-val'),
         sunlight: document.getElementById('sunlight-val'),
-        salinity: document.getElementById('salinity-val'),
         disaster: document.getElementById('disaster-val')
     };
 
@@ -59,7 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
             rain: parseInt(sliders.rain.value),
             altitude: parseInt(sliders.altitude.value),
             sunlight: parseInt(sliders.sunlight.value),
-            salinity: parseInt(sliders.salinity.value),
             disaster: parseInt(sliders.disaster.value)
         };
 
