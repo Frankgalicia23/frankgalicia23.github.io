@@ -3,18 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biology Simulations</title>
+    <title>Biology Simulations - Classroom Resources</title>
+    <link rel="stylesheet" href="lizard-styles.css">
+    <style>
+        .simulation-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .sim-card {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            border-top: 5px solid var(--primary-green);
+        }
+        .sim-card:hover {
+            transform: translateY(-5px);
+        }
+        .sim-card-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+        }
+        .sim-card-content h3 {
+            margin-top: 0;
+            color: var(--primary-green);
+        }
+        .sim-card-link {
+            display: block;
+            text-align: center;
+            background: var(--primary-green);
+            color: var(--white);
+            padding: 1rem;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .sim-card-link:hover {
+            background: var(--secondary-green);
+        }
+        .guide-banner {
+            background: var(--accent-green);
+            color: var(--primary-green);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+            text-align: center;
+            border: 2px dashed var(--primary-green);
+        }
+        .guide-banner h2 { margin-top: 0; }
+        .btn-guide {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.8rem 2rem;
+            background: var(--primary-green);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Biology Simulations Landing Page</h1>
+        <h1>Biology Simulations</h1>
+        <p>Interactive Tools for Middle and High School Science</p>
     </header>
 
-    <main>
+    <nav>
         <ul>
-            <li><a href="digestive-system.html">Digestive System</a></li>
-            <li><a href="lizard-simulation.html">Lizard Simulation</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="guide.html">Teacher's Guide</a></li>
         </ul>
+    </nav>
+
+    <main>
+        <section class="guide-banner">
+            <h2>New to these simulations?</h2>
+            <p>Learn how to use these tools in your classroom and even how to request new ones!</p>
+            <a href="guide.html" class="btn-guide">View Teacher's Guide</a>
+        </section>
+
+        <h2>Available Simulations</h2>
+        <div class="simulation-card-grid">
+            <article class="sim-card">
+                <div class="sim-card-content">
+                    <h3>Lizard Tail Length</h3>
+                    <p>Explore natural selection by adjusting environmental factors like temperature, rainfall, and altitude to see how they affect a lizard population over time.</p>
+                </div>
+                <a href="lizard-simulation.html" class="sim-card-link">Launch Simulation</a>
+            </article>
+
+            <article class="sim-card">
+                <div class="sim-card-content">
+                    <h3>Digestive System</h3>
+                    <p>Dive into the human digestive system. Learn about organs, enzymes, and how different conditions like pH and temperature affect digestion.</p>
+                </div>
+                <a href="digestive-system.html" class="sim-card-link">Launch Simulation</a>
+            </article>
+        </div>
     </main>
+
+    <footer>
+        <p>&copy; 2025 Biology Education Resources - Interactive Science Simulations</p>
+    </footer>
 </body>
 </html>
