@@ -32,7 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
         rain: document.getElementById('rain-slider'),
         altitude: document.getElementById('altitude-slider'),
         sunlight: document.getElementById('sunlight-slider'),
-        salinity: document.getElementById('salinity-slider'),
         disaster: document.getElementById('disaster-slider')
     };
 
@@ -42,7 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
         rain: document.getElementById('rain-val'),
         altitude: document.getElementById('altitude-val'),
         sunlight: document.getElementById('sunlight-val'),
-        salinity: document.getElementById('salinity-val'),
         disaster: document.getElementById('disaster-val')
     };
 
@@ -58,7 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
             rain: parseInt(sliders.rain.value),
             altitude: parseInt(sliders.altitude.value),
             sunlight: parseInt(sliders.sunlight.value),
-            salinity: parseInt(sliders.salinity.value),
             disaster: parseInt(sliders.disaster.value)
         };
 
@@ -68,7 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
         valDisplays.rain.textContent = vals.rain === 0 ? "Normal" : (vals.rain > 7 ? "Heavy" : "Increased");
         valDisplays.altitude.textContent = vals.altitude === 0 ? "Uniform" : (vals.altitude > 7 ? "Extreme Variation" : "Mixed Terrain");
         valDisplays.sunlight.textContent = vals.sunlight === 0 ? "Moderate" : (vals.sunlight > 7 ? "Intense" : "Partial Shade");
-        valDisplays.salinity.textContent = vals.salinity === 0 ? "Freshwater" : (vals.salinity > 7 ? "Hypersaline" : "Brackish");
         valDisplays.disaster.textContent = vals.disaster === 0 ? "None" : (vals.disaster > 7 ? "Catastrophic" : "Minor Event");
 
         // Calculate Simulation Results
@@ -85,11 +81,11 @@ document.addEventListener('DOMContentLoaded', () => {
         newMean -= (vals.disaster * 2); // Disasters in this model favor smaller/shorter-tailed lizards
 
         // Diversifying logic: Geography and Temp mix splits the population
-        if (vals.altitude > 3 || vals.salinity > 3 || vals.sunlight > 5 || (vals.altitude > 0 && Math.abs(vals.temp) > 3)) {
+        if (vals.altitude > 3 || vals.sunlight > 5 || (vals.altitude > 0 && Math.abs(vals.temp) > 3)) {
             isBimodal = true;
             // First peak moves left, second peak moves right based on "diversity" intensity
             // Increased multipliers to reach ~20 and ~80 extremes
-            const baseSpread = (vals.altitude * 1.5) + (vals.salinity * 1.2) + (vals.sunlight * 1.0);
+            const baseSpread = (vals.altitude * 1.5) + (vals.sunlight * 1.0);
             const tempSpreadBoost = Math.abs(vals.temp) * 1.5;
             const spread = baseSpread + tempSpreadBoost;
 
