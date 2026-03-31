@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maple Syrup Simulation - Matter Cycling & Evolution</title>
+    <link rel="stylesheet" href="lizard-styles.css"> <!-- Reusing existing styles for consistency -->
+    <link rel="stylesheet" href="maple-styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>New England Maple Syrup Simulation</h1>
+        <p>Explore how Matter (Carbon) from the air becomes Wood and Syrup through Photosynthesis.</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#simulation">Simulation</a></li>
+            <li><a href="#about">About Matter Cycling</a></li>
+        </ul>
+    </nav>
+
+    <main id="simulation">
+        <div class="simulation-layout">
+            <!-- Left Column: Environmental Controls -->
+            <aside class="controls">
+                <section class="control-group">
+                    <h3>Environmental Inputs (Photosynthesis)</h3>
+                    <div class="slider-item">
+                        <label for="co2-slider">Atmospheric CO<sub>2</sub> (ppm)</label>
+                        <input type="range" id="co2-slider" min="300" max="800" value="420" step="10">
+                        <span id="co2-val">420 ppm</span>
+                    </div>
+                    <div class="slider-item">
+                        <label for="sunlight-slider">Sunlight Intensity (%)</label>
+                        <input type="range" id="sunlight-slider" min="0" max="100" value="80" step="5">
+                        <span id="sunlight-val">80%</span>
+                    </div>
+                    <div class="slider-item">
+                        <label for="temp-slider">Avg. Summer Temp (°C)</label>
+                        <input type="range" id="temp-slider" min="15" max="35" value="22" step="1">
+                        <span id="temp-val">22°C</span>
+                    </div>
+                </section>
+
+                <section class="control-group">
+                    <h3>Natural Selection Pressures</h3>
+                    <div class="slider-item">
+                        <label for="selection-pressure">Pest Intensity (Invasive Beetles)</label>
+                        <input type="range" id="selection-pressure" min="0" max="100" value="10" step="5">
+                        <span id="pest-val">10%</span>
+                    </div>
+                    <div class="checkbox-item">
+                        <label>
+                            <input type="checkbox" id="selection-mode"> Enable Natural Selection (Generations)
+                        </label>
+                    </div>
+                </section>
+
+                <div class="action-buttons">
+                    <button id="step-season-btn">Next Season</button>
+                    <button id="reset-btn">Reset Grove</button>
+                </div>
+
+                <div id="season-display" class="info-card">
+                    <h3 id="current-season">Season: Summer</h3>
+                    <p id="season-desc">Trees are performing photosynthesis, taking in CO<sub>2</sub> to build sugar and wood.</p>
+                </div>
+            </aside>
+
+            <!-- Right Column: Visualization & Data -->
+            <article class="visualization">
+                <!-- Carbon Counter (Matter Cycling) -->
+                <div class="carbon-counter">
+                    <div class="counter-item">
+                        <span class="label">Carbon in Atmosphere:</span>
+                        <span id="atmos-carbon" class="value">Low</span>
+                    </div>
+                    <div class="counter-arrow">↓ Photosynthesis ↓</div>
+                    <div class="tree-stats">
+                        <div class="stat-box">
+                            <span class="label">Stored Sugar (Syrup)</span>
+                            <span id="sugar-storage" class="value">0 kg</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="label">New Wood (Growth)</span>
+                            <span id="wood-storage" class="value">0 kg</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Forest View -->
+                <div class="forest-view">
+                    <div id="grove-container" class="grove-grid">
+                        <!-- Trees will be rendered here via JS -->
+                    </div>
+                </div>
+
+                <!-- Data Charts -->
+                <div class="chart-container">
+                    <canvas id="growthChart"></canvas>
+                </div>
+
+                <section id="harvest-results" class="info-card hidden">
+                    <h3>Spring Harvest Results</h3>
+                    <p>Total Syrup Produced: <span id="total-syrup">0</span> Liters</p>
+                    <p>Average Tree Health: <span id="avg-health">100</span>%</p>
+                </section>
+            </article>
+        </div>
+
+        <!-- Educational Content (NGSS Alignment) -->
+        <section id="about" class="educational-content">
+            <h2>Matter Cycling & Photosynthesis (MS-LS1-6)</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Where does the matter come from?</h3>
+                    <p>Sugar Maples don't get their "bulk" from the soil. Instead, they take in <strong>Carbon Dioxide (CO<sub>2</sub>)</strong> from the air and use <strong>Sunlight</strong> to turn it into <strong>Sugar (Glucose)</strong>. This process is called photosynthesis.</p>
+                </div>
+                <div class="card">
+                    <h3>Wood & Syrup (Matter Transformation)</h3>
+                    <p>The sugar created in the summer is used in two ways: 1) To build <strong>cellulose</strong> (the wood of the tree) and 2) Stored as <strong>starch</strong> which turns back into <strong>sugar</strong> in the sap during the New England spring thaw.</p>
+                </div>
+                <div class="card">
+                    <h3>Heredity & Selection (MS-LS3/4)</h3>
+                    <p>Not all maple trees are the same! Some have genes for <strong>higher sugar content</strong>, while others grow <strong>faster wood</strong>. If the environment changes (like a warming climate), some trees may survive better than others, leading to evolution in the grove over generations.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 New England Biology Education - Sugar Maple Lab</p>
+    </footer>
+
+    <script src="maple-script.js"></script>
+</body>
+</html>
