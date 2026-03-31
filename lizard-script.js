@@ -66,7 +66,6 @@ document.addEventListener('DOMContentLoaded', () => {
         valDisplays.rain.textContent = `${vals.rain} mm`;
         valDisplays.altitude.textContent = `${vals.altitude} m`;
         valDisplays.sunlight.textContent = `${vals.sunlight} hrs/day`;
-        valDisplays.salinity.textContent = `${vals.salinity} ppt`;
         valDisplays.disaster.textContent = `${vals.disaster}%`;
 
         // Calculate Simulation Results
@@ -95,10 +94,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Diversifying logic: Geography and extremes split the population
         const altitudeDev = Math.abs(vals.altitude - neutral.altitude);
-        if (vals.altitude > 2000 || vals.salinity > 15 || vals.sunlight > 11 || (altitudeDev > 1000 && Math.abs(vals.temp - neutral.temp) > 10)) {
+        if (vals.altitude > 2000 || vals.sunlight > 11 || (altitudeDev > 1000 && Math.abs(vals.temp - neutral.temp) > 10)) {
             isBimodal = true;
 
-            const baseSpread = (vals.altitude / 1000 * 1.5) + (vals.salinity / 10 * 1.2) + (Math.abs(vals.sunlight - neutral.sunlight) * 0.5);
+            const baseSpread = (vals.altitude / 1000 * 1.5) + (Math.abs(vals.sunlight - neutral.sunlight) * 0.5);
             const tempSpreadBoost = Math.abs(vals.temp - neutral.temp) * 0.1;
             const spread = baseSpread + tempSpreadBoost;
 
@@ -114,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const altDev = Math.abs(vals.altitude - neutral.altitude);
         const sunDev = Math.abs(vals.sunlight - neutral.sunlight);
 
-        if (tempDev < 5 && rainDev < 500 && altDev < 500 && sunDev < 2 && vals.drought === 0 && vals.salinity === 0 && vals.disaster === 0) {
+        if (tempDev < 5 && rainDev < 500 && altDev < 500 && sunDev < 2 && vals.drought === 0 && vals.disaster === 0) {
             newStdDev = initialStdDev * 0.7;
             selectionTypeDisplay.textContent = "Stabilizing";
             selectionDescDisplay.textContent = "In a stable environment, lizards with average tail lengths are most likely to survive and reproduce. Extreme variations are selected against.";
