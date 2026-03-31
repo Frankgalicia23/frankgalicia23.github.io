@@ -46,27 +46,18 @@
                 </section>
 
                 <section class="control-group">
-                    <h3>Natural Selection Pressures</h3>
-                    <div class="slider-item">
-                        <label for="selection-pressure">Pest Intensity (Invasive Beetles)</label>
-                        <input type="range" id="selection-pressure" min="0" max="100" value="10" step="5">
-                        <span id="pest-val">10%</span>
-                    </div>
-                    <div class="checkbox-item">
-                        <label>
-                            <input type="checkbox" id="selection-mode"> Enable Natural Selection (Generations)
-                        </label>
-                    </div>
+                    <h3>Simulation Controls</h3>
+                    <p>Set environmental variables and run a 50-year trial to see how they affect wood growth and syrup production.</p>
                 </section>
 
                 <div class="action-buttons">
-                    <button id="step-season-btn">Next Season</button>
-                    <button id="reset-btn">Reset Grove</button>
+                    <button id="run-trial-btn">Run 50-Year Trial</button>
+                    <button id="reset-btn">Clear All Trials</button>
                 </div>
 
-                <div id="season-display" class="info-card">
-                    <h3 id="current-season">Season: Summer</h3>
-                    <p id="season-desc">Trees are performing photosynthesis, taking in CO<sub>2</sub> to build sugar and wood.</p>
+                <div id="trial-info" class="info-card">
+                    <h3 id="trial-count">Trials: 0 / 3</h3>
+                    <p id="trial-desc">Adjust the sliders and click "Run Trial" to start. You can overlay up to 3 different trials.</p>
                 </div>
             </aside>
 
@@ -99,17 +90,40 @@
                 </div>
 
                 <!-- Data Charts -->
-                <div class="chart-container">
+                <div class="chart-container" style="position: relative; height:400px; width:100%">
                     <canvas id="growthChart"></canvas>
                 </div>
 
-                <section id="harvest-results" class="info-card hidden">
-                    <h3>Spring Harvest Results</h3>
-                    <p>Total Syrup Produced: <span id="total-syrup">0</span> Liters</p>
-                    <p>Average Tree Health: <span id="avg-health">100</span>%</p>
+                <section id="trial-results" class="info-card hidden">
+                    <h3>Latest Trial Summary</h3>
+                    <p>Total Syrup (50 Years): <span id="total-syrup">0</span> kg</p>
+                    <p>Total Wood Growth (50 Years): <span id="total-wood">0</span> kg</p>
                 </section>
             </article>
         </div>
+
+        <!-- Data Table Section -->
+        <section class="table-container">
+            <h3>Yearly Data Table (Latest Trial)</h3>
+            <div class="scrollable-table">
+                <table id="data-table">
+                    <thead>
+                        <tr>
+                            <th>Year</th>
+                            <th>CO2 (ppm)</th>
+                            <th>Sunlight (%)</th>
+                            <th>Temp (°C)</th>
+                            <th>Yearly Sugar (kg)</th>
+                            <th>Yearly Wood (kg)</th>
+                            <th>Total Biomass (kg)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Data rows will be added here via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
 
         <!-- Educational Content (NGSS Alignment) -->
         <section id="about" class="educational-content">
@@ -124,8 +138,8 @@
                     <p>The sugar created in the summer is used in two ways: 1) To build <strong>cellulose</strong> (the wood of the tree) and 2) Stored as <strong>starch</strong> which turns back into <strong>sugar</strong> in the sap during the New England spring thaw.</p>
                 </div>
                 <div class="card">
-                    <h3>Heredity & Selection (MS-LS3/4)</h3>
-                    <p>Not all maple trees are the same! Some have genes for <strong>higher sugar content</strong>, while others grow <strong>faster wood</strong>. If the environment changes (like a warming climate), some trees may survive better than others, leading to evolution in the grove over generations.</p>
+                    <h3>Environmental Impact</h3>
+                    <p>Changes in the environment, such as increased <strong>CO<sub>2</sub></strong> or <strong>Temperature</strong>, directly affect how much matter a tree can produce. By running multiple trials, we can observe how different conditions impact long-term forest health and syrup yields.</p>
                 </div>
             </div>
         </section>
